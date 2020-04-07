@@ -19,7 +19,14 @@
 				<div class = "card-panel">
 					<h6 class = "bold">Budget Left</h6>
 
-					<h1 class = "bold">...</h1>
+					{% if project.budget_left > 0 %}
+						<h1 class = "bold green-text">${{ project.budget_left }}</h1>
+					{% elif project.budget_left == 0 %}
+						<h1 class = "bold orange-text">${{ project.budget_left }}</h1>
+					{% else %}
+						<h1 class = "bold red-text">${{ project.budget_left }}</h1>
+					{% endif %}
+					
 				</div>
 			</div>
 
@@ -27,7 +34,7 @@
 				<div class = "card-panel">
 					<h6 class = "bold">Total Transactions</h6>
 
-					<h1 class = "bold">...</h1>
+					<h1 class = "bold">{{ project.total_transactions }}</h1>
 				</div>
 			</div>
 		</div>
@@ -59,7 +66,7 @@
 							<span class = "title bold">{{ expense.category.name }}</span>
 						</div>
 
-						<a href = "">
+						<a onclick = "deleteExpense(this)" data-id = "{{ expense.id }}">
 							<i class = "material-icons red-text right">close</i>
 						</a>
 					</div>
@@ -102,6 +109,22 @@
 
 	var elem = document.querySelector("select")
 	var instance = M.FormSelect.init(elem)
+
+	function deleteExpense(e) {
+		let id = e.dataset.id
+		e.closest('li').remove()
+
+		fetch('', {
+			method: 'DELETE',
+			headers: {
+				'X-CSRFToken': '{{ csrf_token }}'
+			},
+			body: JSON.stringify({
+				'id': id
+			}),
+			credentials: 'same-origin',
+		})
+	}
 </script>
 
 {% endblock %}

@@ -4,6 +4,19 @@
 
 <div class = "container">
 
+	<div class="row">
+
+	{% for project in project_list %}
+
+		<div class="col s12 l3">
+			<div class="card-panel">
+				<h5>{{ project.name }}</h5>
+			</div>
+
+		</div>
+
+	{% empty %}
+
 	<div class = "noproject-wrapper center">
 		<h3 class = "grey-text">Sorry, you don't have any projects, yet.</h3>
 		<a href ="" class = "btn-large grey">
@@ -12,6 +25,9 @@
 		</a>
 	</div>
 
+	{% endfor %}
+
+	</div>
 </div>
 
 {% endblock %}
