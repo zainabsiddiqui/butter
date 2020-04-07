@@ -72,3 +72,8 @@ form ul li.category {
 	background-color: #F2F2F2;
 }
 
+
+.section-expenses .close-icon:hover {
+	cursor: pointer;
+}
+

@@ -26,7 +26,7 @@
 					{% else %}
 						<h1 class = "bold red-text">${{ project.budget_left }}</h1>
 					{% endif %}
-					
+
 				</div>
 			</div>
 
@@ -66,7 +66,7 @@
 							<span class = "title bold">{{ expense.category.name }}</span>
 						</div>
 
-						<a onclick = "deleteExpense(this)" data-id = "{{ expense.id }}">
+						<a class = "close-icon" onclick = "deleteExpense(this)" data-id = "{{ expense.id }}">
 							<i class = "material-icons red-text right">close</i>
 						</a>
 					</div>
