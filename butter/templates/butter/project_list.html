@@ -12,7 +12,7 @@
 	{% for project in project_list %}
 
 		<div class="col s12 l3">
-			<div class="card-panel">
+			<div>
 				<h5>{{ project.name }}</h5>
 				<a href = "{% url 'detail' project.slug %}" class = "btn btn-primary">View</a>
 			</div>

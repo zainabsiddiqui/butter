@@ -16,23 +16,23 @@
         <main class="col offset-2 h-100">
             <div class="row bg-white">
                 <div class="col-12 py-4">
-                	<h4>Sign Up</h4>
+                	<h4>Log In</h4>
                 	<hr>
                     <form method="POST">
-        				{% csrf_token %}
-	        			<fieldset class="form-group">
-					 		{{ form|crispy }}
-	        			
-		        			<div class="form-group">
-		            			<button class="btn btn-outline-info" type="submit">Sign Me Up!</button>
-		        			</div>
-	        			</fieldset>
-        				<div class="border-top">
-			            	<small class="text-muted">
-			                	Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-			            	</small>
-		        		</div>
-    				</form>
+                        {% csrf_token %}
+            			<fieldset class="form-group">
+    				 		{{ form|crispy }}
+            			
+                			<div class="form-group">
+                    			<button class="btn btn-outline-info" type="submit">Take Me to Butter!</button>
+                			</div>
+                        </fieldset>
+            		  	<div class="border-top">
+    		            	<small class="text-muted">
+    		                	Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+    		            	</small>
+    		        	</div>
+                    </form>
                 </div>
             </div>
         </main>

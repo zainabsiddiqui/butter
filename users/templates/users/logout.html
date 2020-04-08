@@ -1,0 +1,32 @@
+{% extends 'butter/base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-2 px-0 fixed-top" id="left">
+
+            <div class="list-group w-100 bg-warning min-vh-100">
+            </div>
+
+        </aside>
+        <main class="col-10 invisible">
+            <!--hidden spacer-->
+        </main>
+        <main class="col offset-2 h-100">
+            <div class="row bg-white">
+                <div class="col-12 py-4">
+                    <h3>You have been logged out.</h3>
+                    <div class="border-top">
+                        <small class="text-muted">
+                            <a href="{% url 'login' %}">Log in again</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+    			
+{% endblock content %}
