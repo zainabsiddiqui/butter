@@ -1,40 +1,47 @@
 {% extends 'butter/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
 <div class = "container">
 
+	<section class = "welcome">
+		<div>
+			<h3 class = "p-3 muted-text">Welcome, user!</h3>
+		</div>
+	</section>
+
 	<section class = "section section-stats">
 		<div class = "row">
 
-			<div class = "col s12 m12 l4">
-				<div class = "card-panel">
-					<h6 class = "bold">Total Budget</h6>
+			<div class = "col s12 m12 l4 card shadow-sm p-3 mb-5 bg-white rounded">
+				<div class = "card-body">
+					<h6 class = "card-title">Total Budget</h6>
 
-					<h1 class = "bold">${{ project.budget }}</h1>
+					<h1 class = "bold card-text">${{ project.budget }}</h1>
 				</div>
 			</div>
 
-			<div class = "col s12 m6 l4">
-				<div class = "card-panel">
-					<h6 class = "bold">Budget Left</h6>
+			<div class = "col s12 m6 l4 card shadow-sm p-3 mb-5 bg-white rounded">
+				<div class = "card-body">
+					<h6 class = "card-title">Budget Left</h6>
 
 					{% if project.budget_left > 0 %}
-						<h1 class = "bold green-text">${{ project.budget_left }}</h1>
+						<h1 class = "bold text-success card-text">${{ project.budget_left }}</h1>
 					{% elif project.budget_left == 0 %}
-						<h1 class = "bold orange-text">${{ project.budget_left }}</h1>
+						<h1 class = "bold text-warning card-text">${{ project.budget_left }}</h1>
 					{% else %}
-						<h1 class = "bold red-text">${{ project.budget_left }}</h1>
+						<h1 class = "bold text-danger card-text">${{ project.budget_left }}</h1>
 					{% endif %}
 
 				</div>
 			</div>
 
-			<div class = "col s12 m6 l4">
-				<div class = "card-panel">
-					<h6 class = "bold">Total Transactions</h6>
+			<div class = "col s12 m6 l4 card shadow-sm p-3 mb-5 bg-white rounded">
+				<div class = "card-body">
+					<h6 class = "card-title">Total Transactions</h6>
 
-					<h1 class = "bold">{{ project.total_transactions }}</h1>
+					<h1 class = "bold card-text">{{ project.total_transactions }}</h1>
 				</div>
 			</div>
 		</div>
@@ -43,18 +50,19 @@
 
 	<section class = "section section-expenses">
 		<div class = "row">
-			<button class = "btn waves-effect right modal-trigger" href="#expenseModal">
-				<i class = "material-icons white-text left">add_circle</i>
-				Add Expense
+			<button class = "btn bg-warning float-right ml-auto" type="button" data-toggle="modal" data-target="#expenseModal">
+				<i class = "material-icons white-text float-left">add_circle</i>
+				&nbsp; Add a Transaction
 			</button>
+
 		</div>
 
-		<ul class = "z-depth-1">
+		<ul class = "list-group">
 
 			{% for expense in expense_list %}
 
-				<li>
-				<div class = "card-panel z-depth-0 expense">
+				<li class = "list-group-item">
+				<div class = "z-depth-0 expense">
 					<div class = "row">
 						<div class = "col l6">
 							<span class = "title">{{ expense.title }}</span>
@@ -67,7 +75,7 @@
 						</div>
 
 						<a class = "close-icon" onclick = "deleteExpense(this)" data-id = "{{ expense.id }}">
-							<i class = "material-icons red-text right">close</i>
+							<i class = "material-icons text-danger right">close</i>
 						</a>
 					</div>
 				</div>
@@ -80,11 +88,17 @@
 
 </div>
 
-<div id="expenseModal" class = "modal">
-	<div class="modal-content">
-		<h4>Add Expense</h4>
-
-		<form action ="" method= "POST">
+<div id = "expenseModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Transaction</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<form action ="" method= "POST">
 			{% csrf_token %}
 			<label for = "title">Title</label>
 			<input name = "title" id="title">
@@ -98,9 +112,13 @@
 				{% endfor %}
 			</select>
 
-			<button type = "submit" class = "btn">Add</button>
+			<button type="submit" class="btn btn-primary">Save Changes</button>
 		</form>
-	</div>	
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

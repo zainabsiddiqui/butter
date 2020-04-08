@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Project, Category, Expense
 from django.views.generic import CreateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.text import slugify
 from .forms import ExpenseForm
 import json
-
 
 def project_list(request):
 	project_list = Project.objects.all()
