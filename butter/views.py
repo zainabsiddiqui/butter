@@ -11,6 +11,12 @@ def project_list(request):
 	project_list = Project.objects.all()
 	return render(request, 'butter/project_list.html', {'project_list': project_list})
 
+def homepage(request):
+	return render(request, 'butter/homepage.html')
+
+def about(request):
+	return render(request, 'butter/about.html')
+
 def project_detail(request, project_slug):
 	project = get_object_or_404(Project, slug = project_slug)
 	

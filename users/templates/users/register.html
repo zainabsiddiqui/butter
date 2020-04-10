@@ -2,40 +2,26 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container-fluid">
-    <div class="row">
-        <aside class="col-2 px-0 fixed-top" id="left">
-
-            <div class="list-group w-100 bg-warning min-vh-100">
-            </div>
-
-        </aside>
-        <main class="col-10 invisible">
-            <!--hidden spacer-->
-        </main>
-        <main class="col offset-2 h-100">
-            <div class="row bg-white">
-                <div class="col-12 py-4">
-                	<h4>Sign Up</h4>
-                	<hr>
-                    <form method="POST">
-        				{% csrf_token %}
-	        			<fieldset class="form-group">
-					 		{{ form|crispy }}
-	        			
-		        			<div class="form-group">
-		            			<button class="btn btn-outline-info" type="submit">Sign Me Up!</button>
-		        			</div>
-	        			</fieldset>
-        				<div class="border-top">
-			            	<small class="text-muted">
-			                	Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-			            	</small>
-		        		</div>
-    				</form>
+<div class="container min-vh-100">
+    <div class = "pt-5  pb-5 h-100 justify-content-center align-items-center">
+        <h4>Sign Up</h4>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Sign Me Up!</button>
                 </div>
+            </fieldset>
+            <div class="border-top">
+                <small class="text-muted">
+                    Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                </small>
             </div>
-        </main>
+        </form>
     </div>
 </div>
+
 {% endblock content %}
