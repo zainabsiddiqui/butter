@@ -3,11 +3,14 @@
 
 {% block content %}
 
-<div class = "container">
+<div class = "container pt-5 pb-5">
 
 	<section class = "welcome">
 		<div>
-			<h3 class = "p-3 muted-text">Dashboard</h3>
+			<h3 class = "p-3 muted-text" style = "display:inline-block;">{{ project.month }}</h3>
+			<a href = "#" role = "button" class = "btn bg-danger float-right ml-auto" data-toggle = "modal" data-target = "#deleteConfirmation">
+				Delete This Budget
+			</a>
 		</div>
 	</section>
 
@@ -121,6 +124,25 @@
   </div>
 </div>
 
+<div id = "deleteConfirmation" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>Are you sure you want to delete this budget?</p>
+      </div>
+      <div class="modal-footer">
+      	<a class = "btn btn-danger" onclick = "deleteBudget(this)" role = "button" href = "/delete/{{ project.id }}">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 	var elem = document.querySelector(".modal")
 	var instance = M.Modal.init(elem)
@@ -143,6 +165,7 @@
 			credentials: 'same-origin',
 		})
 	}
+	
 </script>
 
 {% endblock %}

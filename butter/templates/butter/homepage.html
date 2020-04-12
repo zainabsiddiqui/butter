@@ -33,35 +33,23 @@
     text-decoration: underline;
   }
 
-  .homepage-btn-1 {
+  .log-sign {
 
     position:absolute;
     top: 50%;
     left: 40%;
     display: block;
     width: 20%;
-    border: strong;
     background-color: black;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-/*    box-shadow: 20px 20px 50px;
-*/  }
+  }
 
-  .homepage-btn-2 {
-
-    position:absolute;
+  #signup {
     top: 60%;
     left: 40%;
-    display: block;
-    width: 20%;
-    border: strong;
-    background-color: black;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
   }
 
 </style>
@@ -79,19 +67,11 @@
 
         {% if not user.is_authenticated %}
 
-          <button type="button" name="button" class="btn btn-dark homepage-btn-1" >
+          <a role="button" class="btn btn-dark log-sign" href = "{% url 'login' %}">Log In</a>
 
-              Log In
+          <a role="button" class="btn btn-dark log-sign"  id = "signup" href = "{% url 'register' %}">Sign Up</a>
 
-          </button>
-
-          <button type="button" name="button" class="btn btn-dark homepage-btn-2" >
-
-              Sign Up
-
-          </button>
-
-          {% endif %}
+        {% endif %}
 
     </div>
 </div>

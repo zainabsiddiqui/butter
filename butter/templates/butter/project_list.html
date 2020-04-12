@@ -6,7 +6,13 @@
 
 	<p>Welcome to your dashboard, <span style = "color: gold;">{{ user.username }}</span>!</p>
 
-	<h1>Monthly Views</h1>
+	<div class = "monthly">
+		<h1 style = "display: inline-block;">Your Monthly Budgets</h1>
+		<a href = "{% url 'add' %}" role = "button" class = "btn bg-warning float-right ml-auto">
+			<i class = "material-icons white-text float-left">add_circle</i>
+			&nbsp;Add New
+		</a>
+	</div>
 	<hr>
 
 	<div class="row">
@@ -15,7 +21,7 @@
 
 		<div class="col s12 l3">
 			<div>
-				<h5>{{ project.name }}</h5>
+				<h5>{{ project.month }}</h5>
 				<a href = "{% url 'detail' project.slug %}" class = "btn btn-primary">View</a>
 			</div>
 
@@ -23,14 +29,8 @@
 
 	{% empty %}
 
-	<div class = "noproject-wrapper center">
-		<h3 class = "grey-text">Sorry, you don't have any projects, yet.</h3>
-		<a href ="" class = "btn-large grey">
-			<i class = "material-icons white-text left">add_circle</i>
-			<span class = "bold">Add Project</span>
-		</a>
-	</div>
-
+		<p class = "text-muted">Sorry, you have not created any monthly budgets yet. Please click the 'Add New' button above to create a new budget!</p>
+		
 	{% endfor %}
 
 	</div>

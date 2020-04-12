@@ -1,34 +1,31 @@
 {% extends 'butter/base.html' %}
-{% load static %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block content %}
 
-<div class="container h-100">
-		<div class="row min-vh-100 justify-content-center align-items-center">
-			<form action = "" method = "POST" class = "add-proj">
-				{% csrf_token %}
+<div class = "container pt-5 pb-5">
+	<form action = "" method = "POST" class = "add-proj">
+		{% csrf_token %}
 
-				<h3>Add Project</h3>
-				<hr>
+		<h3>Add Project</h3>
+		<hr>
 
-				{{ form|crispy }}
+		{{ form|crispy }}
 
-				<label for= "categoryInput">Expense Categories (hit enter after every category)</label>
-				<input type = "text" name = "categoryInput" id = "categoryInput">
-				<input type="hidden" name="categoriesString">
+		<label for= "categoryInput">Expense Categories (hit enter after every category)</label>
+		<input type = "text" name = "categoryInput" id = "categoryInput">
+		<input type="hidden" name="categoriesString">
 
-				<ul id="categoriesContainer">
-			
-				</ul>
+		<ul id="categoriesContainer">
+	
+		</ul>
 
-				<button type = "submit" class = "btn btn-outline-info">
-					Start Project
-				</button>
-			</form>        
-		</div>
-</div>  
-
+		<button type = "submit" class = "btn btn-outline-info">
+			Start Project
+		</button>
+	</form>   
+</div>
 
 <script src = "{% static 'js/script.js' %}"></script>
+
 {% endblock %}

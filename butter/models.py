@@ -1,17 +1,38 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+import uuid
 
 
+MONTH_YEAR_OPTIONS = (
+	("April 2020", "April 2020"),
+	("May 2020", "May 2020"),
+	("June 2020", "June 2020"),
+	("July 2020", "July 2020"),
+	("August 2020", "August 2020"),
+	("September 2020", "September 2020"),
+	("October 2020", "October 2020"),
+	("November 2020", "November 2020"),
+	("December 2020", "December 2020"),
+	("January 2021", "January 2021"),
+	("February 2021", "February 2021"),
+	("March 2021", "March 2021"),
+	)
+
+	
 class Project(models.Model):
-	name = models.CharField(max_length = 100)
-	slug = models.SlugField(max_length = 100, unique = True, blank = True)
+	month = models.CharField(
+		max_length = 20,
+		choices = MONTH_YEAR_OPTIONS,
+		default = ''
+		)
+	slug = models.SlugField(max_length = 100, unique = True, blank = True, default = uuid.uuid1)
 	budget = models.IntegerField()
 	user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "project", null = True)
 
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.name)
+		self.slug = slugify(self.month)
 		super(Project, self).save(*args, **kwargs)
 
 	def budget_left(self):
