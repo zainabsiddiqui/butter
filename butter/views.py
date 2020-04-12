@@ -37,10 +37,14 @@ def project_detail(request, project_slug):
 		# process the form
 		form = ExpenseForm(request.POST)
 
+		print(form.errors)
+		
 		if form.is_valid():
 			title = form.cleaned_data['title']
 			amount = form.cleaned_data['amount']
+			inf_or_outf = form.cleaned_data['in_or_out']
 			category_name = form.cleaned_data['category']
+			date_time = form.cleaned_data['date']
 
 			category = get_object_or_404(Category, project = project, name = category_name)
 
@@ -48,6 +52,8 @@ def project_detail(request, project_slug):
 				project = project, 
 				title = title,
 				amount = amount,
+				in_or_out = inf_or_outf,
+				date = date_time,
 				category = category).save()
 
 	elif request.method == 'DELETE':

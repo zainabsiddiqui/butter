@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from datetime import date
+from django.utils.translation import gettext as _
 import uuid
 
 
@@ -56,7 +58,9 @@ class Expense(models.Model):
 	project = models.ForeignKey(Project, on_delete = models.CASCADE, related_name = "expenses")
 	title = models.CharField(max_length = 100)
 	amount = models.DecimalField(max_digits = 8, decimal_places = 2)
+	in_or_out = models.CharField(max_length = 20)
 	category = models.ForeignKey(Category, on_delete = models.CASCADE)
+	date = models.DateField(_("Date"), default = date.today)
 
 	class Meta:
-		ordering = ('-amount',)
+		ordering = ('-date',)

@@ -101,25 +101,46 @@
         </button>
       </div>
       <div class="modal-body">
-      	<form action ="" method= "POST">
+		<form action = "" method = "POST">
 			{% csrf_token %}
-			<label for = "title">Title</label>
-			<input name = "title" id="title">
+			<div class="form-group">
+				<label for="title">Name</label>
+				<input type="text" class="form-control" placeholder="Enter a name" name = "title" id = "title">
+				<small id="nameHelp" class="form-text text-muted">This can be anything like 'Meijer' if you got groceries or something personal, like 'From Mom'.</small>
+			</div>
+			<div class="form-group">
+				<label for="amount">Amount</label>
+				<div class="form-check form-check-inline float-right">
+	  				<input class="form-check-input" type="radio" name="in_or_out" id="inlineRadio1" value="Outflow">
+	  				<label class="form-check-label" for="inlineRadio1">Outflow</label>
+				</div>
+				<div class="form-check form-check-inline float-right">
+	  				<input class="form-check-input" type="radio" name="in_or_out" id="inlineRadio2" value= "Inflow">
+	  				<label class="form-check-label" for="inlineRadio2">Inflow</label>
+				</div>
+				<input type="number" class="form-control" placeholder="Enter an amount" name = "amount" id = "amount">
+			</div>
+			
+			<div class="form-group">
+				<label for="exampleFormControlSelect1">Category</label>
+			    <select class="form-control" name = "category">
+			    	{% for category in category_list %}
+						<option>{{ category.name }}</option>
+					{% endfor %}
+			    </select>
+  			</div>
 
-			<label for = "amount">Amount</label>
-			<input name = "amount" id="amount">
+  			<div class = "form-group">
+  				<label for="datepicker">Date</label>
+				<input type="date" class="form-control" name = "date" id = "date">
+			</div>
 
-			<select name = "category">
-				{% for category in category_list %}
-					<option>{{ category.name }}</option>
-				{% endfor %}
-			</select>
-
-			<button type="submit" class="btn btn-primary">Save Changes</button>
+			<button type="submit" class="btn float-right bg-warning">Submit</button>
 		</form>
-      </div>
-      <div class="modal-footer">
-      </div>
+    </div>
+    <div class="modal-footer">
+    	
+    </div>
     </div>
   </div>
 </div>
