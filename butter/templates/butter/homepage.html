@@ -5,7 +5,7 @@
 
 <style>
   body {
-    background-image: url("../static/img/butterpic.jpg");
+    background-image: url("../static/img/butter-sliced.jpg");
 
   	/* Full height */
     height: 100%;
@@ -17,42 +17,51 @@
 
     overflow-y:hidden;
 
-    color: white;
+  }
 
+  h1 {
+    font-family: 'Gugi', cursive;
+    font-size: 55px;
+    color: black;
+  }
+
+  div {
+    text-align: center;
+  }
+
+  .underline {
+    text-decoration: underline;
   }
 
   .homepage-btn-1 {
 
     position:absolute;
-    top: 60%;
-    left: 16%;
+    top: 50%;
+    left: 40%;
     display: block;
     width: 20%;
     border: strong;
-    background-color: #FFFD8F;
+    background-color: black;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 20px 20px 50px;
-
-  }
+/*    box-shadow: 20px 20px 50px;
+*/  }
 
   .homepage-btn-2 {
 
     position:absolute;
-    top: 70%;
-    left: 16%;
+    top: 60%;
+    left: 40%;
     display: block;
     width: 20%;
     border: strong;
-    background-color: #FFFD8F;
+    background-color: black;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 20px 20px 50px; 
-
   }
 
 </style>
@@ -66,23 +75,27 @@
 
     <div class = "pt-5 pb-5 h-100 justify-content-center align-items-center">
 
-          <button type="button" name="button" class="btn btn-light homepage-btn-1" >
+        <h1 style = "display: inline-block;"><span style = "color: gold;">BUTTER</span>: <span class = "underline">bu</span>dget be<span class = "underline">tter</span>.</h1>
 
-              LOGIN
+        {% if not user.is_authenticated %}
+
+          <button type="button" name="button" class="btn btn-dark homepage-btn-1" >
+
+              Log In
+
+          </button>
+
+          <button type="button" name="button" class="btn btn-dark homepage-btn-2" >
+
+              Sign Up
 
           </button>
 
-          <button type="button" name="button" class="btn btn-light homepage-btn-2" >
-
-              REGISTER
-
-          </button>
+          {% endif %}
 
     </div>
-
-
-
 </div>
+
 </body>
 
 {% endblock content %}

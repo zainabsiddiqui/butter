@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Lato&display=swap');
+
 
 /* General */
 
 body {
 	height: 100%;
+	font-family: 'Lato', sans-serif !important;
 }
 
 .bold {
@@ -15,8 +17,14 @@ body {
 }
 
 
+.navbar-custom {
+	background-color: #000000;
+}
 
-
+.form-control:focus {
+  border-color: gold;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
 
 /* Project List (no projects) */
 .noproject-wrapper {

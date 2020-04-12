@@ -2,14 +2,16 @@
 
 {% block content %}
 
-<div class = "container">
+<div class = "container pt-5 pb-5">
 
-	<h1>My Projects</h1>
+	<p>Welcome to your dashboard, <span style = "color: gold;">{{ user.username }}</span>!</p>
+
+	<h1>Monthly Views</h1>
 	<hr>
 
 	<div class="row">
 
-	{% for project in project_list %}
+	{% for project in user.project.all %}
 
 		<div class="col s12 l3">
 			<div>

@@ -7,6 +7,7 @@ from django.utils.text import slugify
 from .forms import ExpenseForm
 import json
 
+@login_required
 def project_list(request):
 	project_list = Project.objects.all()
 	return render(request, 'butter/project_list.html', {'project_list': project_list})
@@ -17,6 +18,7 @@ def homepage(request):
 def about(request):
 	return render(request, 'butter/about.html')
 
+@login_required
 def project_detail(request, project_slug):
 	project = get_object_or_404(Project, slug = project_slug)
 	
@@ -55,6 +57,7 @@ class ProjectCreateView(CreateView):
 	fields = ('name', 'budget')
 
 	def form_valid(self, form):
+		form.instance.user = self.request.user
 		self.object = form.save(commit=False)
 		self.object.save()
 

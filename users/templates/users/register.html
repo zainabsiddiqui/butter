@@ -4,7 +4,7 @@
 
 <div class="container min-vh-100">
     <div class = "pt-5  pb-5 h-100 justify-content-center align-items-center">
-        <h4>Sign Up</h4>
+        <h4 style = "font-family: 'Gugi', cursive;">SIGN UP</h4>
         <hr>
         <form method="POST">
             {% csrf_token %}
@@ -12,7 +12,7 @@
                 {{ form|crispy }}
             
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Sign Me Up!</button>
+                    <button class="btn bg-warning" type="submit">Sign Me Up!</button>
                 </div>
             </fieldset>
             <div class="border-top">
