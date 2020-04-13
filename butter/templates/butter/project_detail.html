@@ -81,7 +81,7 @@
 							<i class = "material-icons text-danger right">close</i>
 						</a>
 
-						<div id = "deleteExpenseConfirmation" class="modal" tabindex="-1" role="dialog" onComplete="$('#divId').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();">
+						<div id = "deleteExpenseConfirmation" class="modal">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
@@ -94,7 +94,7 @@
 						      	<p>Are you sure you want to delete this expense?</p>
 						      </div>
 						      <div class="modal-footer">
-						      	<a class = "btn btn-danger" onclick = "deleteExpense(this)" role = "button" data-id = "{{ expense.id }}">Yes</a>
+						      	<a class = "btn btn-danger" onclick = "deleteExpense(this)" data-dismiss="modal" role = "button" data-id = "{{ expense.id }}">Yes</a>
 						      </div>
 						    </div>
 						  </div>
