@@ -8,7 +8,7 @@
 	<section class = "welcome">
 		<div>
 			<h3 class = "p-3 muted-text" style = "display:inline-block;">{{ project.month }}</h3>
-			<a href = "#" role = "button" class = "btn bg-danger float-right ml-auto" data-toggle = "modal" data-target = "#deleteConfirmation">
+			<a href = "#" role = "button" class = "btn bg-danger float-right ml-auto" data-toggle = "modal" data-target = "#deleteBudgetConfirmation">
 				Delete This Budget
 			</a>
 		</div>
@@ -77,9 +77,29 @@
 							<span class = "title bold">{{ expense.category.name }}</span>
 						</div>
 
-						<a class = "close-icon" onclick = "deleteExpense(this)" data-id = "{{ expense.id }}">
+						<a class = "close-icon" data-target = "#deleteExpenseConfirmation" data-toggle = "modal" >
 							<i class = "material-icons text-danger right">close</i>
 						</a>
+
+						<div id = "deleteExpenseConfirmation" class="modal" tabindex="-1" role="dialog" onComplete="$('#divId').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title">Delete Confirmation</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      	<p>Are you sure you want to delete this expense?</p>
+						      </div>
+						      <div class="modal-footer">
+						      	<a class = "btn btn-danger" onclick = "deleteExpense(this)" role = "button" data-id = "{{ expense.id }}">Yes</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
 					</div>
 				</div>
 			</li>
@@ -120,7 +140,7 @@
 				</div>
 				<input type="number" class="form-control" placeholder="Enter an amount" name = "amount" id = "amount">
 			</div>
-			
+
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">Category</label>
 			    <select class="form-control" name = "category">
@@ -139,13 +159,15 @@
 		</form>
     </div>
     <div class="modal-footer">
-    	
+
     </div>
     </div>
   </div>
 </div>
 
-<div id = "deleteConfirmation" class="modal" tabindex="-1" role="dialog">
+
+
+<div id = "deleteBudgetConfirmation" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -186,9 +208,7 @@
 			credentials: 'same-origin',
 		})
 	}
-	
+
 </script>
 
 {% endblock %}
-
-
