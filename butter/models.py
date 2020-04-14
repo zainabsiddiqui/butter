@@ -32,6 +32,14 @@ class Project(models.Model):
 	budget = models.IntegerField()
 	user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "project", null = True)
 
+	def budget_with_inflows(self):
+		expense_list = Expense.objects.filter(project = self)
+		inflows_added = self.budget
+		for expense in expense_list:
+			if expense.in_or_out == 'Inflow':
+				inflows_added += expense.amount
+
+		return inflows_added
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.month)
@@ -40,10 +48,14 @@ class Project(models.Model):
 	def budget_left(self):
 		expense_list = Expense.objects.filter(project = self)
 		total_expense_amount = 0
+		total_income_amount = 0
 		for expense in expense_list:
-			total_expense_amount += expense.amount
+			if expense.in_or_out == 'Inflow':
+				total_income_amount += expense.amount
+			elif expense.in_or_out == 'Outflow': 
+				total_expense_amount += expense.amount
 
-		return self.budget - total_expense_amount
+		return self.budget - total_expense_amount + total_income_amount
 
 	def total_transactions(self):
 		expense_list = Expense.objects.filter(project = self)

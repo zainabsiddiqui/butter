@@ -12,13 +12,20 @@
 
 		{{ form|crispy }}
 
-		<label for= "categoryInput">Expense Categories (hit enter after every category)</label>
+		<label for= "categoryInput">Expense Categories (hit enter after every category):</label>
+		
 		<input type = "text" name = "categoryInput" id = "categoryInput">
 		<input type="hidden" name="categoriesString">
 
 		<ul id="categoriesContainer">
 	
 		</ul>
+
+		<div class = "pb-3">
+			<small class="text-muted">
+	            Suggested categories: housing, groceries, dining, insurance, transportation, entertainment, shopping, miscellaneous, subscriptions and savings. 
+	        </small>
+    	</div>
 
 		<button type = "submit" class = "btn btn-outline-info">
 			Start Project

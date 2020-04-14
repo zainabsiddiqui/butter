@@ -19,15 +19,15 @@
 
 			<div class = "col s12 m12 l4 card shadow-sm p-3 mb-5 bg-white rounded">
 				<div class = "card-body">
-					<h6 class = "card-title">Total Budget</h6>
+					<h6 class = "card-title font-weight-bold">Total Income</h6>
 
-					<h1 class = "bold card-text">${{ project.budget }}</h1>
+					<h1 class = "bold card-text">${{ project.budget_with_inflows }}</h1>
 				</div>
 			</div>
 
 			<div class = "col s12 m6 l4 card shadow-sm p-3 mb-5 bg-white rounded">
 				<div class = "card-body">
-					<h6 class = "card-title">Budget Left</h6>
+					<h6 class = "card-title font-weight-bold">Total Budget Left</h6>
 
 					{% if project.budget_left > 0 %}
 						<h1 class = "bold text-success card-text">${{ project.budget_left }}</h1>
@@ -42,7 +42,7 @@
 
 			<div class = "col s12 m6 l4 card shadow-sm p-3 mb-5 bg-white rounded">
 				<div class = "card-body">
-					<h6 class = "card-title">Total Transactions</h6>
+					<h6 class = "card-title font-weight-bold">Total Transactions</h6>
 
 					<h1 class = "bold card-text">{{ project.total_transactions }}</h1>
 				</div>
@@ -71,7 +71,11 @@
 							<span class = "title">{{ expense.title }}</span>
 						</div>
 						<div class = "col l3">
-							<span class = "title">{{ expense.amount }}</span>
+							{% if expense.in_or_out == 'Inflow' %}
+								<span class = "title text-success">+ {{ expense.amount }}</span>
+							{% else %}
+								<span class = "title text-danger">- {{ expense.amount }}</span>
+							{% endif %}
 						</div>
 						<div class = "col l">
 							<span class = "title bold">{{ expense.category.name }}</span>
@@ -132,11 +136,11 @@
 				<label for="amount">Amount</label>
 				<div class="form-check form-check-inline float-right">
 	  				<input class="form-check-input" type="radio" name="in_or_out" id="inlineRadio1" value="Outflow">
-	  				<label class="form-check-label" for="inlineRadio1">Outflow</label>
+	  				<label class="form-check-label" for="inlineRadio1">Expense</label>
 				</div>
 				<div class="form-check form-check-inline float-right">
 	  				<input class="form-check-input" type="radio" name="in_or_out" id="inlineRadio2" value= "Inflow">
-	  				<label class="form-check-label" for="inlineRadio2">Inflow</label>
+	  				<label class="form-check-label" for="inlineRadio2">Income</label>
 				</div>
 				<input type="number" class="form-control" placeholder="Enter an amount" name = "amount" id = "amount">
 			</div>
@@ -207,6 +211,8 @@
 			}),
 			credentials: 'same-origin',
 		})
+
+		location.reload(true); 
 	}
 
 </script>
