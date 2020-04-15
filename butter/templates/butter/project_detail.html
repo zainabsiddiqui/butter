@@ -7,11 +7,20 @@
 
 	<section class = "welcome">
 		<div>
-			<h3 class = "p-3 muted-text" style = "display:inline-block;">{{ project.month }}</h3>
-			<a href = "#" role = "button" class = "btn bg-danger float-right ml-auto" data-toggle = "modal" data-target = "#deleteBudgetConfirmation">
+			<div>
+			<h3 style = "display:inline-block;" class = "display-4">{{ project.month }}</h3>
+			<a href = "#" role = "button" class = "btn btn-outline-danger float-right ml-auto" data-toggle = "modal" data-target = "#deleteBudgetConfirmation">
 				Delete This Budget
 			</a>
+			</div>
+			<div class = "pb-3">
+				<a href = "{% url 'analysis' project.slug %}">
+					<small class = "muted-text">Analyze your spending for this month →</small>
+				</a>
+			</div>
+
 		</div>
+
 	</section>
 
 	<section class = "section section-stats">
@@ -19,7 +28,7 @@
 
 			<div class = "col s12 m12 l4 card shadow-sm p-3 mb-5 bg-white rounded">
 				<div class = "card-body">
-					<h6 class = "card-title font-weight-bold">Total Income</h6>
+					<h6 class = "card-title font-weight-bold">Total Budgeted Income</h6>
 
 					<h1 class = "bold card-text">${{ project.budget_with_inflows }}</h1>
 				</div>
@@ -27,7 +36,7 @@
 
 			<div class = "col s12 m6 l4 card shadow-sm p-3 mb-5 bg-white rounded">
 				<div class = "card-body">
-					<h6 class = "card-title font-weight-bold">Total Budget Left</h6>
+					<h6 class = "card-title font-weight-bold">Total Budget Remaining</h6>
 
 					{% if project.budget_left > 0 %}
 						<h1 class = "bold text-success card-text">${{ project.budget_left }}</h1>
@@ -47,12 +56,13 @@
 					<h1 class = "bold card-text">{{ project.total_transactions }}</h1>
 				</div>
 			</div>
-		</div>
+		</div>	
 
 	</section>
 
 	<section class = "section section-expenses">
 		<div class = "row">
+			<small class = "muted-text">Sorted by most recent date:</small>
 			<button class = "btn bg-warning float-right ml-auto" type="button" data-toggle="modal" data-target="#expenseModal">
 				<i class = "material-icons white-text float-left">add_circle</i>
 				&nbsp; Add a Transaction
@@ -67,18 +77,21 @@
 				<li class = "list-group-item">
 				<div class = "z-depth-0 expense">
 					<div class = "row">
-						<div class = "col l6">
-							<span class = "title">{{ expense.title }}</span>
+						<div class = "col bold">
+							{{ expense.title }}
 						</div>
-						<div class = "col l3">
+						<div class = "col">
+							{{ expense.date }}
+						</div>
+						<div class = "col">
 							{% if expense.in_or_out == 'Inflow' %}
 								<span class = "title text-success">+ {{ expense.amount }}</span>
 							{% else %}
 								<span class = "title text-danger">- {{ expense.amount }}</span>
 							{% endif %}
 						</div>
-						<div class = "col l">
-							<span class = "title bold">{{ expense.category.name }}</span>
+						<div class = "col">
+							<span class = "category badge badge-light">{{ expense.category.name }}</span>
 						</div>
 
 						<a class = "close-icon" data-target = "#deleteExpenseConfirmation" data-toggle = "modal" >
@@ -103,10 +116,14 @@
 						    </div>
 						  </div>
 						</div>
-
-					</div>
-				</div>
 			</li>
+
+			{% empty %}
+
+			<div style = "background-color: #E0E0E0;">
+
+			<p class = "pt-3 pl-3">Whoops! You don't have any transactions yet. Click the 'Add a Transaction' button above to add one.</p>
+			</div>
 
 			{% endfor %}
 

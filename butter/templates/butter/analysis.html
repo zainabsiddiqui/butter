@@ -1,0 +1,35 @@
+{% extends 'butter/base.html' %}
+
+{% block content %}
+
+<body>
+
+
+<div class = "container pt-5 pb-5" style = "text-align: center;">
+
+	<div class = "pb-2">
+		<h2 class = "text-center">Your Spending for {{ project.month }}</h2>
+		<small class = "muted-text text-center">Here you'll see your expenses for this month summed and ordered by date and category.</small>
+	</div>
+
+	{% if not expense_list %}
+
+		<p class = "text-center">Unfortunately, you do not have any data to draw from. Please add expenses and come back.</p>
+
+	{% else %}
+
+	<div style = "font-size: 0; display: inline-block;">
+
+		{{ div | safe }}
+
+	</div>
+
+	{% endif %}
+
+
+	</div>
+</div>
+
+</body>
+
+{% endblock %}

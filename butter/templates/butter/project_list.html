@@ -4,7 +4,7 @@
 
 <div class = "container pt-5 pb-5">
 
-	<p>Welcome to your dashboard, <span style = "color: gold;">{{ user.username }}</span>!</p>
+	<p>Welcome to your dashboard, <span class = "font-weight-bold">{{ user.username }}</span>!</p>
 
 	<div class = "monthly">
 		<h1 style = "display: inline-block;">Your Monthly Budgets</h1>
@@ -22,7 +22,7 @@
 		<div class="col s12 l3">
 			<div>
 				<h5>{{ project.month }}</h5>
-				<a href = "{% url 'detail' project.slug %}" class = "btn btn-primary">View</a>
+				<a href = "{% url 'detail' project.slug %}" class = "btn btn-outline-warning">View</a>
 			</div>
 
 		</div>

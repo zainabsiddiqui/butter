@@ -7,6 +7,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('list', views.project_list, name='list'),
+    path('<slug:project_slug>/analysis', views.analysis, name='analysis'),
     path('', views.homepage, name='homepage'),
     path('about', views.about, name = 'about'),
     path('register', user_views.register, name = 'register'),
