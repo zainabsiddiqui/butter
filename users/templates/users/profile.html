@@ -10,6 +10,7 @@
         <img class = "account-img pr-5" src = "{{ user.profile.image.url }}" style="width: 150px; height:auto;">
         <div class = "media-body">
             <h2 class = "account-heading">{{ user.username }}</h2>
+            <a href="{% url 'password_reset' %}">Change Password</a>
             <p class = "text-secondary">{{ user.email }}</p>
              <form method="POST" enctype = "multipart/form-data">
                 {% csrf_token %}
