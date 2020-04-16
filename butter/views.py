@@ -51,6 +51,27 @@ def analysis(request, project_slug):
 				amounts_list.append(int(expense.amount))
 				by_type_list.append(expense.category.name)
 
+		# Grabbing duplicates from list of dates
+		result_dates =[idx for idx, item in enumerate(date_list) if item in date_list[:idx]]
+
+		count = 0
+
+		for duplicate in result_dates:
+			if count > 0:
+				duplicate -= 1
+
+			# Find the index the duplicate originally appears at
+			original_index = date_list.index(date_list[duplicate])
+
+			# Increment the original date's amount with the duplicate date amounts
+			amounts_list[original_index] += amounts_list[duplicate]
+
+			# Remove the duplicate from both lists
+			date_list.pop(duplicate)
+			amounts_list.pop(duplicate)
+
+			count += 1
+
 		#Bar graph #1, shows expenses by date
 		p = figure(x_range=date_list, plot_height=250, title="Amount Spent By Date",
            toolbar_location=None, tools="")

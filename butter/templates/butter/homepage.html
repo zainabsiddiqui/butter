@@ -66,6 +66,14 @@
 
         <h1 style = "display: inline-block;"><span style = "color: gold;">BUTTER</span>: <span class = "underline">bu</span>dget be<span class = "underline">tter</span>.</h1>
 
+        {% if not user.is_authenticated %}
+
+          <a role="button" class="btn btn-dark log-sign" href = "{% url 'login' %}">Log In</a>
+                    <a role="button" class="btn btn-dark log-sign"  id = "signup" href = "{% url 'register' %}">Sign Up</a>
+
+
+        {% endif %}
+
     </div>
 </div>
 
