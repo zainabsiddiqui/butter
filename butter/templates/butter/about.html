@@ -2,13 +2,73 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+<style>
+  body {
+    background-image: url("../static/img/dollar.jpg");
+
+  	/* Full height */
+    height: 100%;
+
+    /* Center and scale the image */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    overflow-y:hidden;
+
+  }
+
+  h3 {
+    font-family: 'Gugi', cursive;
+    display: inline;
+  }
+
+  .center {
+  	text-align: center;
+  }
+
+  .blurb {
+  	font-size: 15px;
+  }
+
+  .contact {
+  	position: absolute;
+  	left: 50%;
+  	bottom: 5%;
+  	-webkit-transform: translateX(-50%);
+  	transform: translateX(-50%)
+  	font-size: 15px;
+  }
+
+</style>
+
 
 
 <body>
+
+
+<div class="container min-vh-100">
+
+    <div class = "pt-5 pb-5 h-100 center">
+
+        <h3>About Us</h3>
+
+        <div class = "blurb pt-2 pb-1">
+        	<p>Hi! We are the creators of the Butter web app you are visiting right now. We wanted to create an app that could be useful to <i>everyone</i>.</p>
+        	<p>As you may already know, budgeting is the bread and butter (get it?) of personal finance and financial stability. To make this easier, we've created a website that will do all of the calculations for you. All you need to do is enter your transactions, sit back, and determine if your current spending is working for you. You can also make use of our spending analysis feature to get a quick picture of what your expenses look like.</p>
+        	<p><strong>Happy budgeting!</strong></p>
+        </div>
+
+		<div class = "contact">
+        	<p>Have suggestions, comments, concerns, or just feel lonely? <a href = "mailto:butterwebapp@gmail.com">Contact us.</a></p>
+        </div>
+
+    </div>
+
+   
+</div>
+
 </body>
-
-
-
 
 
 
